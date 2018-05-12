@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "android": {
+      "package": "br.com.rodolfopeixoto.tinder"
+    },
+    "name": "Tinder",
+    "slug": "tinder",
+    "version": "0.1.0",
+    "isDetached": true,
+    "detach": {
+      "scheme": "exp317a96ac9edf46b4bd2f6ff38d32e40d",
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.5.1-sdk27.0.0-bb187a9e-e43b-409f-8a5e-c16afa958cca.tar.gz"
+    }
+  }
+}
