@@ -1,0 +1,15 @@
+import React, { Component } from 'react';
+import {
+  StyleSheet
+} from 'react-native';
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
+
+module.exports = styles
