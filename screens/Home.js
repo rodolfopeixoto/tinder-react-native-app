@@ -3,22 +3,24 @@ import styles from '../styles';
 import {
  Text,
  View,
-
 } from 'react-native';
+import { connect } from 'react-redux';
+import { login } from '../redux/actions'; 
+
 
 class Home extends Component{
   state = {}
 
   
   componentWillMount() {
-    
+    this.props.dispatch(login())
   }
 
   render(){
     return(
       <View>
         <Text>
-          HOME23.js
+          { this.props.user }
         </Text>
       </View>
     );
@@ -27,5 +29,10 @@ class Home extends Component{
 
 }
 
+function mapStateToProps(state){
+  return{
+    user: state.user
+  };
+}
 
-export default Home;
+export default connect(mapStateToProps)(Home);
