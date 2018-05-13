@@ -3,8 +3,10 @@ import styles from '../styles';
 import {
  Text,
  View,
+ Image
 
 } from 'react-native';
+import { connect } from 'react-redux';
 
 class Profile extends Component{
   state = {}
@@ -16,9 +18,13 @@ class Profile extends Component{
 
   render(){
     return(
-      <View>
+      <View style={styles.containerPicture}>
+        <Image 
+          style={styles.profilePicture}
+          source={ { uri: this.props.user.photoUrl }}
+        />
         <Text>
-          Profile.js
+          { this.props.user.name.split(' ')[0] }
         </Text>
       </View>
     );
@@ -28,4 +34,11 @@ class Profile extends Component{
 }
 
 
-export default Profile;
+function mapStateToProps(state){
+  return{
+    user: state.user
+  };
+}
+
+
+export default connect(mapStateToProps)(Profile);

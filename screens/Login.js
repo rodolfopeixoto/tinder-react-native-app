@@ -19,8 +19,7 @@ class Login extends Component{
 
     firebase.auth().onAuthStateChanged((user) => {
       if(user != null){
-        this.props.dispatch(login(true))
-        console.log("We are authenticated now!" + JSON.stringify(user));
+        this.props.dispatch(login(user));
       }
     });
 
@@ -52,29 +51,12 @@ class Login extends Component{
       return(
         <View style={styles.container}>
           <TouchableOpacity 
-            style={
-              {
-                borderRadius: 8,
-                backgroundColor: '#4367b2',
-                padding: 10,
-                width: 300,
-                height: 70,
-                justifyContent: 'center',
-                alignItems: 'center'
-                
-              }
-            }
+            style={ styles.btnFACEBOOK }
             onPress={this.login.bind(this)}>
             <Text
-             style={
-               {
-                 color: '#fff',
-                 fontSize: 20,
-                 fontWeight: 'bold'
-               }
-             }
+             style={ styles.textBtnFacebook }
             >
-              Login with Facebook
+              LOGIN WITH FACEBOOK
             </Text>
           </TouchableOpacity>
         </View>
