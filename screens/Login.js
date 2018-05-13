@@ -1,22 +1,93 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styles from '../styles';
-import { Text, View } from 'react-native';
+import { 
+  TouchableOpacity,
+   View,
+   Text
+} from 'react-native';
+import RootNavigator from '../navigation/RootNavigator.js';
+import { connect } from 'react-redux';
+import { login } from '../redux/actions';
+import { firebase } from '../config/firebase';
 
 class Login extends Component{
   state = {}
 
-  componentWillMount() {}
+  componentWillMount() {
+    // this.props.dispatch(login())
+    // this.login();
 
-  render(){
-    return(
-      <View>
-        <Text>
-          LOGIN
-        </Text>
-      </View>
-    );
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user != null){
+        this.props.dispatch(login(true))
+        console.log("We are authenticated now!" + JSON.stringify(user));
+      }
+    });
+
   }
 
+
+  login = async () => {
+    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1812020642439167', {
+      permissions: ['public_profile'],
+    });
+    if(type === 'success'){
+      //Build Firebase credential with the facebook access token
+      const credential = await firebase.auth.FacebookAuthProvider.credential(token);
+
+      //Sign in with credential from the Facebook user.
+      await firebase.auth().signInAndRetrieveDataWithCredential(credential).catch((error) => {
+        Alert.alert('Try Again');
+      });
+    }
+  }
+
+  render(){
+
+    if(this.props.loggedIn){
+      return(
+        <RootNavigator/>
+      );
+    }else{
+      return(
+        <View style={styles.container}>
+          <TouchableOpacity 
+            style={
+              {
+                borderRadius: 8,
+                backgroundColor: '#4367b2',
+                padding: 10,
+                width: 300,
+                height: 70,
+                justifyContent: 'center',
+                alignItems: 'center'
+                
+              }
+            }
+            onPress={this.login.bind(this)}>
+            <Text
+             style={
+               {
+                 color: '#fff',
+                 fontSize: 20,
+                 fontWeight: 'bold'
+               }
+             }
+            >
+              Login with Facebook
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
 }
 
-export default Login;
+
+function mapStateToProps(state){
+  return{
+    loggedIn: state.loggedIn
+  };
+}
+
+export default connect(mapStateToProps)(Login);

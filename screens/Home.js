@@ -14,22 +14,6 @@ class Home extends Component{
 
   
   componentWillMount() {
-    this.props.dispatch(login())
-    this.login()
-  }
-
-  login = async () => {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1812020642439167', {
-      permissions: ['public_profile'],
-    });
-    if(type === 'success'){
-      const response = await fetch(
-      `https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert(
-        'Logged in!',
-        `Hi ${(await response.json()).name}!`, 
-     );
-    }
   }
 
 
@@ -37,7 +21,7 @@ class Home extends Component{
     return(
       <View>
         <Text>
-          { this.props.user }
+        HOME
         </Text>
       </View>
     );
@@ -48,7 +32,7 @@ class Home extends Component{
 
 function mapStateToProps(state){
   return{
-    user: state.user
+    loggedIn: state.loggedIn
   };
 }
 

@@ -1,8 +1,8 @@
-export function login(){
+export function login(value) {
   return function(dispatch){
     dispatch({
       type: 'LOGIN',
-      payload: 'OLAS'
+      payload: value
     });
   }
 }
