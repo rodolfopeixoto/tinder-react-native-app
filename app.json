@@ -1,6 +1,8 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
+    "facebookAppId": "1812020642439167",
+    "facebookDisplayName":"TinderAppForReact",
     "android": {
       "package": "br.com.rodolfopeixoto.tinder"
     },
