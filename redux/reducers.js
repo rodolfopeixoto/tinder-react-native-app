@@ -21,6 +21,9 @@ export default reducers = ( state = {
     case 'LOGIN':{
       return { ...state,user: action.user, loggedIn: action.loggedIn}
     }
+    case 'UPLOAD_IMAGES':{
+      return { ...state, user: {...state.user, images: action.payload} }
+    }
   }
   return state;
 }
