@@ -49,7 +49,7 @@ class Login extends Component{
       );
     }else{
       return(
-        <View style={styles.container}>
+        <View style={[styles.container,styles.center]}>
           <TouchableOpacity 
             style={ styles.btnFACEBOOK }
             onPress={this.login.bind(this)}>

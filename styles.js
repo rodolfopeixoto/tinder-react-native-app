@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet
-} from 'react-native';
+import { StyleSheet } from 'react-native';
+let Dimensions  = require('Dimensions');
+let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get('window').height;
 
-var styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flex: 1
   },
   btnFACEBOOK: {
     borderRadius: 8,
@@ -24,15 +21,61 @@ var styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold'
   },
-  containerPicture:{
-    flex: 1,
-    alignItems: 'center'
+  color: {
+    color: '#df4723'
   },
-  profilePicture:{
-    width: 110,
-    height: 110,
-    borderRadius: 50,
-    margin: 10
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textCenter: {
+    textAlign: 'center'
+  },
+  img: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    margin: 10,
+  },
+  imgRow:{
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    padding: 15
+  },
+  textInput:{
+    width: deviceWidth,
+    padding: 15,
+    backgroundColor: '#fff',
+    height: 100
+  },
+  bold:{
+    padding: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  button:{
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: '#df4723',
+    textAlign: 'center',
+    color: '#df4723',
+    padding: 15,
+    margin: 15,
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  buttomAdd: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 45
+  },
+  profile:{
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    margin: 10,
   }
 });
 

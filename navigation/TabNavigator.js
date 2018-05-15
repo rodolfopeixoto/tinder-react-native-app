@@ -35,10 +35,20 @@ export default TabNavigator(
     animationEnabled: true,
     swipeEnabled: true,
     tabBarOptions: {
+      activeTintColor: '#df4723',
+      inactiveTintColor: 'lightgray',
+      indicatorStyle: {
+        backgroundColor: '#df4723'
+      },
       style: {
         height: 75,
-        paddingTop: Expo.Constants.statusBarHeight
+        paddingTop: Expo.Constants.statusBarHeight,
+        elevation: 0,
+        backgroundColor: '#fff',
+        borderTopWidth: 1,
+        borderBottomColor: '#df4723'
       },
+      
     }
   }
 );

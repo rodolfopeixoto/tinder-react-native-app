@@ -4,43 +4,65 @@ import {
  Text,
  View,
  Image,
- TouchableOpacity
+ TouchableOpacity,
+ TextInput,
+ ScrollView
 
 } from 'react-native';
 import { connect } from 'react-redux';
-import { uploadImage } from '../redux/actions';
+import { uploadImages, deleteImage, updateAbout, logout } from '../redux/actions'
+import { Ionicons } from '@expo/vector-icons';
 
 class Profile extends Component{
-  state = {}
-
   
-  componentWillMount() {
-    this.props.dispatch(uploadImage(this.props.user.images))    
+  deleteImage(){
+    this.self.props.dispatch(deleteImage(this.self.props.user.images, this.key))
+  }
+  
+  addImage() {
+    this.props.dispatch(uploadImages(this.props.user.images))
   }
 
   render(){
     return(
-      <View style={styles.containerPicture}>
-        <Image 
-          style={styles.profilePicture}
-          source={ { uri: this.props.user.photoUrl }}
-        />
-        <Text>
-          { this.props.user.name.split(' ')[0] }
-        </Text>
-        <View  style={{ flexDirection: 'row' }}>
-          { this.props.user.images.map( (uri,key) => {
-            return(
-              <TouchableOpacity key={{key}}>
-                <Image
-                  style={styles.profilePicture}
-                  source={{uri: uri}} />
-              </TouchableOpacity>
-            );
-          })}
+      <ScrollView>
+        <View style={[styles.container,styles.center]}>
+
+          <View style={styles.container}>
+            <Image style={ styles.profile } source={{uri: this.props.user.photoUrl}}/>
+            <Text style={[styles.center, styles.bold]} >{this.props.user.name}</Text>
+          </View>
+
+          <View  style={styles.imgRow}>
+            { this.props.user.images.map( (uri,key) => {
+              return(
+                <TouchableOpacity key={{key}} onPress={this.deleteImage.bind({ self: this, key: key})} >
+                  <Image style={styles.img} source={{uri: uri}} />
+                </TouchableOpacity>
+              );
+            })}
+
+           <TouchableOpacity style={[styles.img, styles.center, styles.buttomAdd]} onPress={this.addImage.bind(this)}>
+             <Ionicons name="ios-add" size={75} style={styles.color} />
+           </TouchableOpacity>
+          </View>
+
+          <Text style={styles.bold}>About</Text>
+          <TextInput
+            underlineColorAndroid={'transparent'} 
+            style={styles.textInput}
+            multiline={true}
+            numberOfLines={5}
+            onChangeText={ (text) => this.props.dispatch(updateAbout(text) )}
+            value={this.props.user.aboutMe}
+          />
         </View>
 
-      </View>
+        <TouchableOpacity onPress={ () => this.props.dispatch( logout() )}>
+          <Text style={ styles.button }>Logout</Text>
+        </TouchableOpacity>
+
+      </ScrollView>
     );
   }
   
