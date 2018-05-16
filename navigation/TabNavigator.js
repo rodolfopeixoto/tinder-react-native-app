@@ -33,7 +33,7 @@ export default TabNavigator(
     tabBarPosition: 'top',
     initialRouteName: 'Home',
     animationEnabled: true,
-    swipeEnabled: true,
+    swipeEnabled: false,
     tabBarOptions: {
       activeTintColor: '#df4723',
       inactiveTintColor: 'lightgray',

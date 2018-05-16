@@ -106,7 +106,22 @@ export function updateAbout(value){
   return function(dispatch){
     dispatch({ type: 'UPDATE_ABOUT', payload: value});
     setTimeout(function(){
-      firebase.database().ref('/cards' + firebase.auth().currentUser.uid).update({ aboutMe: value });
+      firebase.database().ref(`cards/${firebase.auth().currentUser.uid}`).update({ aboutMe: value });
     }, 3000);
+  }
+}
+
+
+export function getCards(){
+  return function(dispatch) {
+    firebase.database().ref('cards').once('value', (snapshot) => {
+      let items = [];
+      snapshot.forEach((child) =>{
+        let item = child.val();
+        item.id = child.key;
+        items.push(item);
+      });
+      dispatch({ type: 'GET_CARDS', payload: items })
+    })
   }
 }

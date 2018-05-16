@@ -76,6 +76,21 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     margin: 10,
+  },
+  card: {
+    width: deviceWidth * .9,
+    height: deviceHeight * .75,
+    borderRadius: 50,
+  },
+  cardDescription:{
+    padding: 15,
+    justifyContent: 'flex-end',
+    flex: 1,
+  },
+  cardInfo:{
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    padding: 10
   }
 });
 
